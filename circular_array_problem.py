@@ -1,37 +1,64 @@
-temp = input()
-N, K = temp.split()
-N = int(N)
-key = int(K)
-a = input()
-a = a.split()
-for i in range(len(a)):
-    a[i] = int(a[i])
+# code
+#T = int(input())
+T = 1
+for i in range(T):
+    temp = '309 862'
+    N, K = temp.split()
+    N = int(N)
+    key = int(K)
+    #a = "1 9 11 16 17 18 22 33 38 40 53 54 58 68 70 72 82 84 87 88 98 100 105 110 113 115 117 123 127 128 132 135 137 142 148 150 153 155 156 160 171 172 173 174 180 182 184 185 190 196 198 199 200 212 218 224 225 226 232 255 264 265 267 270 279 281 282 284 286 290 296 297 298 299 301 309 310 311 314 315 326 327 335 338 339 342 351 352 353 355 356 361 362 365 369 377 379 383 394 399 400 405 413 416 422 427 429 434 438 440 446 466 477 483 484 488 490 491 492 495 507 512 518 526 529 533 536 538 539 540 542 549 552 553 556 560 564 567 571 578 583 584 588 591 594 596 604 611 619 622 632 637 639 640 642 644 650 652 658 663 666 668 673 674 680 683 686 694 699 709 716 717 721 723 736 761 762 763 775 777 778 784 788 791 806 814 815 816 821 826 828 829 834 840 845 851 852 853 854 857 858 860 861 872 876 878 887 889 891 893 899 911 929 931 932 933 950 953 955 956 957 958 963 970 971 973 977 978 983 986 988 990 991 992 998 1000 982 981 968 961 949 934 920 913 903 869 824 798 794 730 727 720 719 678 667 660 625 574 563 497 486 476 475 473 470 469 425 419 384 378 359 344 324 306 305 287 246 239 217 208 193 175 161 157 154 141 134 126 101 76 63 51 43 31 30 20 12 3"
+    a = '39 51 71 84 92 93 149 154 158 173 178 193 216 217 231 243 410 425 429 459 476 482 483 540 542 567 586 587 593 746 807 823 833 839 850 873 919 923 975 1000 994 992 990 989 987 984 980 979 976 970 965 960 958 955 945 939 928 915 910 909 905 896 889 885 879 874 872 870 862 861 852 846 841 838 829 828 826 825 821 820 819 817 816 815 814 812 811 804 803 801 800 790 784 783 780 778 774 765 764 763 761 758 756 753 750 738 733 728 725 724 716 712 711 708 705 704 701 699 697 686 685 684 683 682 680 673 670 666 663 658 650 648 645 643 640 639 634 626 615 613 603 594 592 588 584 583 582 580 579 569 565 560 559 558 557 555 547 541 539 538 534 533 532 526 520 510 509 508 505 498 488 487 485 481 475 474 472 470 464 460 456 452 451 447 446 443 441 439 432 430 427 424 415 409 408 401 398 394 393 388 386 381 380 379 376 370 367 366 362 358 357 355 354 349 348 342 337 333 331 330 324 320 318 316 312 308 306 305 304 302 301 296 291 280 273 271 270 269 263 259 258 255 246 242 239 236 228 224 223 222 221 220 213 208 207 205 203 202 196 191 190 187 185 184 180 170 169 161 160 155 150 147 141 137 135 132 130 129 122 121 117 116 107 102 96 95 94 90 89 86 81 79 78 77 73 67 61 59 56 52 49 38 27 23 19 14 12 11 4'
+    a = a.split()
+    for i in range(len(a)):
+        a[i] = int(a[i])
 
 
-# binary search
-def binary_search(a, k, i):
-    n = len(a)
-    if a[int(n/2)] == k: return i + int(n/2)
-    elif n == 1: return "OOPS! NOT FOUND"
-    elif a[int(n/2)] > k: return binary_search(a[0:int(n/2)], k, i)
-    else: return binary_search(a[int(n/2):n], k, i + int(n/2))
+    # binary search
+    def binary_search(a, r, k, i):
+        # print(a)
+        # print(k)
+        # print(i)
+        if r == 0:
+            n = len(a)
+            if a[int(n / 2)] == k:
+                return i + int(n / 2)
+            elif n == 1:
+                return "OOPS! NOT FOUND"
+            elif a[int(n / 2)] > k:
+                return binary_search(a[0:int(n / 2)], r, k, i)
+            else:
+                return binary_search(a[int(n / 2):n], r, k, i + int(n / 2))
+        elif r == 1:
+            n = len(a)
+            if a[int(n / 2)] == k:
+                return i + int(n / 2)
+            elif n == 1:
+                return "OOPS! NOT FOUND"
+            elif a[int(n / 2)] < k:
+                return binary_search(a[0:int(n / 2)], r, k, i)
+            else:
+                return binary_search(a[int(n / 2):n], r, k, i + int(n / 2))
 
 
-# finding index of pivot element
-def pivot_index(a, i):
-    n = len(a)
-    if a[0] > a[1]: return i
-    elif a[0] > a[int(n/2)]: return pivot_index(a[0:int(n / 2)], i)
-    else: return pivot_index(a[int(n / 2): n], i + int(n / 2))
+    # finding index of pivot element
+
+    def pivot_index(a, i):
+        mid = (len(a)-1) // 2
+        # print(mid)
+        # print(a)
+        # print(i)
+        # print('\n')
+        if len(a) == 1: return i
+        if a[mid] > a[mid + 1]:
+            return pivot_index(a[:mid + 1], i)
+        else:
+            return pivot_index(a[mid + 1:], mid + i + 1)
 
 
-
-index = pivot_index(a, 0)
-if key >= a[0]:
-    print(binary_search(a[0:index+1], key, 0))
-else:
-    print(binary_search(a[index+1:len(a)], key, index + 1 ))
-
-
-
-
+    index = pivot_index(a, 0)
+    temp1 = (binary_search(a[0:index + 1], 0, key, 0))
+    if temp1 != "OOPS! NOT FOUND":
+        print('YES')
+        print(temp1)
+    else:
+        print(binary_search(a[index:], 1, key, index))
